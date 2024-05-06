@@ -16,14 +16,14 @@ const getJewelry = async ({ limits = 6, order_by = "id_ASC", page = 1 }) => {
   const [campo, direccion] = order_by.split("_");
   const offset = Math.abs((page - 1) * limits);
   const formattedQuery = format(
-    "SELECT * FROM joyas ORDER BY %s %s LIMIT %s OFFSET %s",
+    "SELECT * FROM inventario ORDER BY %s %s LIMIT %s OFFSET %s",
     campo,
     direccion,
     limits,
     offset
   );
-  const { rows: joyas } = await pool.query(formattedQuery);
-  return joyas;
+  const { rows: inventario } = await pool.query(formattedQuery);
+  return inventario;
 } catch (error) {
   throw new Error(`Error en getJewelry: ${error.message}`);
 }
@@ -42,13 +42,13 @@ const getFilter = async ({ precio_max, precio_min, categoria, metal }) => {
   if (precio_min) addFilter("precio", ">=", precio_min);
   if (categoria) addFilter("categoria", "=", categoria);
   if (metal) addFilter("metal", "=", metal);
-  let consulta = "SELECT * FROM joyas";
+  let consulta = "SELECT * FROM inventario";
   if (filtros.length > 0) {
     filtros = filtros.join(" AND ");
     consulta += ` WHERE ${filtros}`;
   }
-  const { rows: joyas } = await pool.query(consulta, values);
-  return joyas;
+  const { rows: inventario } = await pool.query(consulta, values);
+  return inventario;
 } catch (error) {
   throw new Error(`Error en getFilter: ${error.message}`);
 }

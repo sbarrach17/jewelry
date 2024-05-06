@@ -1,9 +1,9 @@
-CREATE DATABASE joyeria;
+CREATE DATABASE joyas;
 
-CREATE TABLE joyas (id SERIAL, nombre VARCHAR(50), categoria
+CREATE TABLE inventario (id SERIAL, nombre VARCHAR(50), categoria
 VARCHAR(50), metal VARCHAR(50), precio INT, stock INT);
 
-INSERT INTO joyas values
+INSERT INTO inventario values
 (DEFAULT, 'Collar Heart', 'collar', 'oro', 20000 , 2),
 (DEFAULT, 'Collar History', 'collar', 'plata', 15000 , 5),
 (DEFAULT, 'Aros Berry', 'aros', 'oro', 12000 , 10),
